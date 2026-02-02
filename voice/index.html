@@ -6,7 +6,7 @@
     <title>KI-Anrufbeantworter | Varia Plus</title>
     <meta name="description" content="Nie wieder einen Kundenanruf verpassen. Der KI-Anrufbeantworter nimmt Anrufe entgegen, beantwortet Fragen und bucht Termine – 24/7, auch wenn Sie nicht können.">
     
-    <!-- Fonts -->
+    <!-- Fonts (wie variaplus.de) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,13 +15,12 @@
         :root {
             --vp-blue: #0064fa;
             --vp-blue-dark: #0050c8;
+            --vp-blue-light: #e8f1ff;
             --vp-dark: #111111;
             --vp-gray: #767676;
-            --vp-light: #f8f9fa;
-            --vp-gold: #ffb204;
+            --vp-gray-light: #f5f7fa;
             --vp-white: #ffffff;
             --vp-success: #10b981;
-            --vp-danger: #ef4444;
         }
         
         * {
@@ -49,6 +48,42 @@
             padding: 0 24px;
         }
         
+        /* ========== ICONS ========== */
+        .icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--vp-blue);
+            stroke-width: 1.5;
+            fill: none;
+        }
+        
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            background: var(--vp-blue-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .icon-box svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--vp-blue);
+            stroke-width: 1.5;
+            fill: none;
+        }
+        
         /* ========== HEADER ========== */
         header {
             position: fixed;
@@ -72,16 +107,9 @@
             padding: 16px 0;
         }
         
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--vp-dark);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--vp-blue);
+        .logo img {
+            height: 40px;
+            width: auto;
         }
         
         .header-cta {
@@ -103,7 +131,7 @@
         /* ========== HERO ========== */
         .hero {
             padding: 160px 0 100px;
-            background: linear-gradient(180deg, var(--vp-light) 0%, var(--vp-white) 100%);
+            background: linear-gradient(180deg, var(--vp-gray-light) 0%, var(--vp-white) 100%);
             text-align: center;
         }
         
@@ -174,7 +202,9 @@
         }
         
         .hero-guarantee svg {
-            color: var(--vp-success);
+            width: 16px;
+            height: 16px;
+            stroke: var(--vp-success);
             vertical-align: middle;
             margin-right: 4px;
         }
@@ -207,8 +237,7 @@
         /* ========== PROBLEM SECTION ========== */
         .problem {
             padding: 100px 0;
-            background: var(--vp-dark);
-            color: white;
+            background: var(--vp-gray-light);
         }
         
         .problem h2 {
@@ -218,7 +247,7 @@
         }
         
         .problem h2 span {
-            color: var(--vp-gold);
+            color: var(--vp-blue);
         }
         
         .problem-grid {
@@ -228,21 +257,17 @@
         }
         
         .problem-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--vp-white);
             border-radius: 12px;
             padding: 30px;
+            text-align: center;
             transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
         
         .problem-card:hover {
-            background: rgba(255,255,255,0.08);
             transform: translateY(-5px);
-        }
-        
-        .problem-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         
         .problem-card h3 {
@@ -253,7 +278,7 @@
         }
         
         .problem-card p {
-            color: rgba(255,255,255,0.7);
+            color: var(--vp-gray);
             font-size: 0.95rem;
         }
         
@@ -261,20 +286,21 @@
             text-align: center;
             margin-top: 60px;
             padding: 40px;
-            background: rgba(255,255,255,0.05);
+            background: var(--vp-white);
             border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
         
         .problem-stat-value {
             font-family: 'Playfair Display', serif;
             font-size: 4rem;
             font-weight: 700;
-            color: var(--vp-danger);
+            color: var(--vp-blue);
         }
         
         .problem-stat-text {
             font-size: 1.2rem;
-            color: rgba(255,255,255,0.8);
+            color: var(--vp-gray);
             margin-top: 8px;
         }
         
@@ -314,21 +340,17 @@
         }
         
         .flow-step {
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
             border-radius: 12px;
             padding: 24px 32px;
             text-align: center;
             min-width: 180px;
         }
         
-        .flow-icon {
-            font-size: 2rem;
-            margin-bottom: 12px;
-        }
-        
         .flow-text {
             font-weight: 600;
             font-size: 0.95rem;
+            margin-top: 12px;
         }
         
         .flow-arrow {
@@ -339,7 +361,7 @@
         /* ========== BENEFITS ========== */
         .benefits {
             padding: 100px 0;
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
         }
         
         .benefits h2 {
@@ -358,6 +380,7 @@
             background: var(--vp-white);
             border-radius: 12px;
             padding: 36px;
+            text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             transition: all 0.3s;
         }
@@ -365,18 +388,6 @@
         .benefit-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        
-        .benefit-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--vp-blue) 0%, #3b82f6 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
         }
         
         .benefit-card h3 {
@@ -442,10 +453,21 @@
             font-size: 0.95rem;
         }
         
+        .step-highlight {
+            background: var(--vp-blue-light);
+            color: var(--vp-blue);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 12px;
+        }
+        
         /* ========== SOCIAL PROOF ========== */
         .social-proof {
             padding: 100px 0;
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
         }
         
         .social-proof h2 {
@@ -468,7 +490,7 @@
         }
         
         .testimonial-stars {
-            color: var(--vp-gold);
+            color: #fbbf24;
             font-size: 1.2rem;
             margin-bottom: 16px;
         }
@@ -497,6 +519,10 @@
             justify-content: center;
             color: white;
             font-weight: 700;
+        }
+        
+        .testimonial-avatar.orange {
+            background: #ff6b00;
         }
         
         .testimonial-name {
@@ -537,7 +563,7 @@
         
         .pricing-card {
             background: var(--vp-white);
-            border: 2px solid var(--vp-light);
+            border: 2px solid var(--vp-gray-light);
             border-radius: 16px;
             padding: 40px;
             text-align: center;
@@ -608,7 +634,7 @@
         
         .pricing-features li {
             padding: 10px 0;
-            border-bottom: 1px solid var(--vp-light);
+            border-bottom: 1px solid var(--vp-gray-light);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -620,7 +646,9 @@
         }
         
         .pricing-features svg {
-            color: var(--vp-success);
+            width: 20px;
+            height: 20px;
+            stroke: var(--vp-success);
             flex-shrink: 0;
         }
         
@@ -629,7 +657,7 @@
         }
         
         .pricing-features .disabled svg {
-            color: var(--vp-gray);
+            stroke: var(--vp-gray);
         }
         
         .pricing-cta {
@@ -668,7 +696,7 @@
         /* ========== FAQ ========== */
         .faq {
             padding: 100px 0;
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
         }
         
         .faq h2 {
@@ -700,7 +728,7 @@
         }
         
         .faq-question:hover {
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
         }
         
         .faq-icon {
@@ -732,55 +760,45 @@
         /* ========== FINAL CTA ========== */
         .final-cta {
             padding: 100px 0;
-            background: var(--vp-dark);
-            color: white;
+            background: var(--vp-blue-light);
             text-align: center;
         }
         
         .final-cta h2 {
             font-size: clamp(1.8rem, 3.5vw, 2.8rem);
             margin-bottom: 20px;
+            color: var(--vp-dark);
         }
         
         .final-cta p {
             font-size: 1.15rem;
-            color: rgba(255,255,255,0.8);
+            color: var(--vp-gray);
             max-width: 600px;
             margin: 0 auto 40px;
-        }
-        
-        .final-cta .btn-primary {
-            background: var(--vp-gold);
-            color: var(--vp-dark);
-        }
-        
-        .final-cta .btn-primary:hover {
-            background: #e6a003;
-            box-shadow: 0 10px 30px rgba(255, 178, 4, 0.3);
         }
         
         .final-cta-trust {
             margin-top: 30px;
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.6);
+            color: var(--vp-gray);
         }
         
         /* ========== FOOTER ========== */
         footer {
             padding: 40px 0;
-            background: #0a0a0a;
-            color: rgba(255,255,255,0.6);
+            background: var(--vp-gray-light);
+            color: var(--vp-gray);
             text-align: center;
             font-size: 0.9rem;
         }
         
         footer a {
-            color: rgba(255,255,255,0.8);
+            color: var(--vp-dark);
             text-decoration: none;
         }
         
         footer a:hover {
-            color: white;
+            color: var(--vp-blue);
         }
         
         /* ========== RESPONSIVE ========== */
@@ -808,7 +826,9 @@
     <header id="header">
         <div class="container">
             <div class="header-inner">
-                <a href="https://variaplus.de" class="logo">Varia <span>Plus</span></a>
+                <a href="https://variaplus.de" class="logo">
+                    <img src="https://variaplus.de/wp-content/uploads/2020/04/variaplus_logo_web_floating-nav.png" alt="Varia Plus">
+                </a>
                 <a href="#kontakt" class="header-cta">Kostenlos beraten lassen</a>
             </div>
         </div>
@@ -818,7 +838,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-badge">
-                📞 KI-Technologie für den Mittelstand
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                KI-Technologie für den Mittelstand
             </div>
             <h1>Nie wieder einen <span>Kundenanruf</span> verpassen.</h1>
             <p class="hero-sub">
@@ -828,14 +849,10 @@
             <div class="hero-cta-group">
                 <a href="#kontakt" class="btn-primary">
                     Jetzt kostenlos beraten lassen
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
                 <p class="hero-guarantee">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                     Unverbindlich & kostenlos • 30-Tage-Geld-zurück-Garantie
                 </p>
             </div>
@@ -862,17 +879,23 @@
             <h2>Kennen Sie das? Ihr Telefon klingelt – <span>aber niemand kann ran.</span></h2>
             <div class="problem-grid">
                 <div class="problem-card">
-                    <div class="problem-icon">😫</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
                     <h3>Sie sind im Kundengespräch</h3>
                     <p>Mitten in der Beratung klingelt das Telefon. Rangehen? Dann unterbrechen Sie den Kunden vor Ihnen. Nicht rangehen? Dann verlieren Sie vielleicht den nächsten.</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">🏃</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
                     <h3>Ihr Team ist ausgelastet</h3>
                     <p>Alle Mitarbeiter haben zu tun. Das Telefon klingelt – und keiner kann. Nach dem dritten Klingeln hat der Interessent aufgelegt.</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">🌙</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </div>
                     <h3>Nach Feierabend? Keine Chance.</h3>
                     <p>Kunden rufen an, wenn sie Zeit haben – nicht wenn Sie geöffnet haben. Abends, am Wochenende, in der Mittagspause. Und Sie verpassen jeden einzelnen Anruf.</p>
                 </div>
@@ -897,22 +920,30 @@
             </div>
             <div class="solution-flow">
                 <div class="flow-step">
-                    <div class="flow-icon">📞</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
                     <div class="flow-text">Kunde ruft an</div>
                 </div>
                 <div class="flow-arrow">→</div>
                 <div class="flow-step">
-                    <div class="flow-icon">🤖</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                    </div>
                     <div class="flow-text">KI nimmt ab</div>
                 </div>
                 <div class="flow-arrow">→</div>
                 <div class="flow-step">
-                    <div class="flow-icon">🧠</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
                     <div class="flow-text">Versteht Anliegen</div>
                 </div>
                 <div class="flow-arrow">→</div>
                 <div class="flow-step">
-                    <div class="flow-icon">✅</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
                     <div class="flow-text">Erledigt & dokumentiert</div>
                 </div>
             </div>
@@ -925,32 +956,44 @@
             <h2>Was der KI-Anrufbeantworter für Sie tut</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-icon">📅</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
                     <h3>Termine direkt buchen</h3>
                     <p>Der Assistent kennt Ihren Kalender und vereinbart Termine – ohne Rückruf, ohne E-Mail-Ping-Pong.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">❓</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
                     <h3>Fragen beantworten</h3>
                     <p>Öffnungszeiten, Anfahrt, Verfügbarkeit – häufige Fragen werden sofort und korrekt beantwortet.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">📝</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
                     <h3>Nachrichten aufnehmen</h3>
                     <p>Jedes Anliegen wird erfasst und strukturiert an Sie weitergeleitet – per E-Mail oder ins CRM.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🔀</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                    </div>
                     <h3>Intelligent weiterleiten</h3>
                     <p>Bei dringenden Fällen oder auf Wunsch wird der Anruf direkt an einen Mitarbeiter durchgestellt.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🇩🇪</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
                     <h3>Natürliche deutsche Sprache</h3>
                     <p>Kein Roboter-Sound. Die KI spricht natürlich und versteht auch komplexere Anfragen.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🔒</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
                     <h3>DSGVO-konform</h3>
                     <p>Alle Daten werden auf deutschen Servern verarbeitet. Datenschutz ist garantiert.</p>
                 </div>
@@ -972,6 +1015,7 @@
                     <div class="step-number">2</div>
                     <h3>Einrichtung in 24-48h</h3>
                     <p>Wir konfigurieren den Assistenten für Ihr Unternehmen – mit Ihren Informationen, Ihrem Stil.</p>
+                    <span class="step-highlight">Einbindung über einfache Anrufweiterleitung</span>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
@@ -994,7 +1038,7 @@
                         Seit der KI-Anrufbeantworter läuft, werden Tische automatisch gebucht, auch wenn wir gerade hunderte Cocktails mixen."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background: #ff6b00;">MK</div>
+                        <div class="testimonial-avatar orange">MK</div>
                         <div>
                             <div class="testimonial-name">Matthias Küffner</div>
                             <div class="testimonial-role">Inhaber, Smile Bar Kemnath</div>
@@ -1046,23 +1090,23 @@
                     <div class="pricing-setup">+ 299€ einmalige Einrichtung</div>
                     <ul class="pricing-features">
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             100 Inklusivminuten
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             KI-Anrufannahme 24/7
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Zusammenfassung via E-Mail
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Standard-Begrüßung
                         </li>
                         <li class="disabled">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             Terminvereinbarung
                         </li>
                     </ul>
@@ -1076,23 +1120,23 @@
                     <div class="pricing-setup">+ 299€ einmalige Einrichtung</div>
                     <ul class="pricing-features">
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             <strong>500 Inklusivminuten</strong>
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Alles aus Basic
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             <strong>Terminvereinbarung</strong>
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             CRM-Integration
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Individuelle Begrüßung
                         </li>
                     </ul>
@@ -1105,23 +1149,23 @@
                     <div class="pricing-setup">+ 499€ einmalige Einrichtung</div>
                     <ul class="pricing-features">
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             <strong>1.000 Inklusivminuten</strong>
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Alles aus Standard
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Mehrere Rufnummern
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Custom Voice
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Priority Support
                         </li>
                     </ul>
@@ -1149,6 +1193,17 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
+                        <span>Wie wird der Assistent eingebunden?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ganz einfach über eine Anrufweiterleitung. Sie richten bei Ihrem Telefonanbieter eine Weiterleitung ein (z.B. wenn besetzt oder nach 3x Klingeln) – das war's. Keine technischen Installationen, keine Hardware nötig.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
                         <span>Klingt die KI wie ein Roboter?</span>
                         <span class="faq-icon">+</span>
                     </div>
@@ -1165,7 +1220,7 @@
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            In diesem Fall nimmt die KI eine Nachricht auf und leitet sie an Sie weiter. Bei dringenden Fällen kann der Anruf auch direkt an einen Mitarbeiter durchgestellt werden.
+                            In diesem Fall nimmt die KI eine Nachricht auf und leitet sie an Sie weiter. Bei dringenden Fällen kann der Anruf auch direkt an einen Mitarbeiter durchgestellt werden. So gehen keine wichtigen Anfragen verloren.
                         </div>
                     </div>
                 </div>
@@ -1182,12 +1237,12 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>Sind meine Daten sicher?</span>
+                        <span>Werden die Daten in Deutschland gespeichert?</span>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            Ja. Alle Daten werden DSGVO-konform auf deutschen Servern verarbeitet und gespeichert. Datenschutz hat bei uns höchste Priorität.
+                            Ja. Alle Daten werden DSGVO-konform auf deutschen Servern verarbeitet und gespeichert. Datenschutz hat bei uns höchste Priorität – wir gehören zu den wenigen Anbietern mit vollständig EU-konformer Infrastruktur.
                         </div>
                     </div>
                 </div>
@@ -1205,9 +1260,7 @@
             </p>
             <a href="https://variaplus.de/termin" class="btn-primary">
                 Kostenloses Erstgespräch buchen
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <p class="final-cta-trust">
                 ✓ Unverbindlich & kostenlos • ✓ 30-Tage-Geld-zurück-Garantie • ✓ DSGVO-konform

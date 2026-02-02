@@ -6,7 +6,7 @@
     <title>KI-Chatbot für alle Kanäle | Varia Plus</title>
     <meta name="description" content="Ein Chatbot für Website, WhatsApp, Instagram und mehr. Beantwortet Fragen, bucht Termine, qualifiziert Leads – automatisch und rund um die Uhr.">
     
-    <!-- Fonts -->
+    <!-- Fonts (wie variaplus.de) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,14 +15,16 @@
         :root {
             --vp-blue: #0064fa;
             --vp-blue-dark: #0050c8;
+            --vp-blue-light: #e8f1ff;
             --vp-dark: #111111;
             --vp-gray: #767676;
-            --vp-light: #f8f9fa;
-            --vp-gold: #ffb204;
+            --vp-gray-light: #f5f7fa;
             --vp-white: #ffffff;
             --vp-success: #10b981;
-            --vp-danger: #ef4444;
-            --vp-purple: #8b5cf6;
+            --vp-whatsapp: #25D366;
+            --vp-instagram: #E4405F;
+            --vp-facebook: #1877F2;
+            --vp-messenger: #0084FF;
         }
         
         * {
@@ -50,6 +52,26 @@
             padding: 0 24px;
         }
         
+        /* ========== ICONS ========== */
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            background: var(--vp-blue-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .icon-box svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--vp-blue);
+            stroke-width: 1.5;
+            fill: none;
+        }
+        
         /* ========== HEADER ========== */
         header {
             position: fixed;
@@ -73,16 +95,9 @@
             padding: 16px 0;
         }
         
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--vp-dark);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--vp-blue);
+        .logo img {
+            height: 40px;
+            width: auto;
         }
         
         .header-cta {
@@ -104,7 +119,7 @@
         /* ========== HERO ========== */
         .hero {
             padding: 160px 0 100px;
-            background: linear-gradient(180deg, var(--vp-light) 0%, var(--vp-white) 100%);
+            background: linear-gradient(180deg, var(--vp-gray-light) 0%, var(--vp-white) 100%);
             text-align: center;
         }
         
@@ -112,7 +127,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--vp-purple);
+            background: var(--vp-blue);
             color: white;
             padding: 8px 16px;
             border-radius: 50px;
@@ -175,57 +190,170 @@
         }
         
         .hero-guarantee svg {
-            color: var(--vp-success);
+            width: 16px;
+            height: 16px;
+            stroke: var(--vp-success);
             vertical-align: middle;
             margin-right: 4px;
         }
         
-        /* Channel Icons */
-        .hero-channels {
+        /* ========== CHANNEL VISUAL ========== */
+        .channel-visual {
+            margin-top: 60px;
+            position: relative;
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 60px;
-            flex-wrap: wrap;
-        }
-        
-        .channel-icon {
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            min-height: 400px;
         }
         
-        .channel-icon-circle {
-            width: 70px;
-            height: 70px;
+        .chat-mockup {
             background: var(--vp-white);
-            border: 2px solid var(--vp-light);
+            border-radius: 24px;
+            padding: 20px;
+            width: 320px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 16px;
+        }
+        
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--vp-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            transition: all 0.3s;
         }
         
-        .channel-icon:hover .channel-icon-circle {
-            border-color: var(--vp-blue);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .chat-avatar svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
         }
         
-        .channel-icon-label {
-            font-size: 0.85rem;
-            color: var(--vp-gray);
-            font-weight: 500;
+        .chat-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        
+        .chat-status {
+            font-size: 0.8rem;
+            color: var(--vp-success);
+        }
+        
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .chat-msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .chat-msg.bot {
+            background: var(--vp-gray-light);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chat-msg.user {
+            background: var(--vp-blue);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        
+        /* Floating channel icons */
+        .floating-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+        
+        .floating-icon.whatsapp {
+            background: var(--vp-whatsapp);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .floating-icon.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            top: 5%;
+            right: 10%;
+            animation-delay: 0.5s;
+        }
+        
+        .floating-icon.facebook {
+            background: var(--vp-facebook);
+            bottom: 20%;
+            left: 8%;
+            animation-delay: 1s;
+        }
+        
+        .floating-icon.messenger {
+            background: var(--vp-messenger);
+            bottom: 10%;
+            right: 5%;
+            animation-delay: 1.5s;
+        }
+        
+        .floating-icon.web {
+            background: var(--vp-blue);
+            top: 40%;
+            right: 3%;
+            animation-delay: 2s;
+        }
+        
+        .floating-icon.sms {
+            background: #8B5CF6;
+            bottom: 40%;
+            left: 3%;
+            animation-delay: 2.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
         }
         
         /* ========== PROBLEM SECTION ========== */
         .problem {
             padding: 100px 0;
-            background: var(--vp-dark);
-            color: white;
+            background: var(--vp-gray-light);
         }
         
         .problem h2 {
@@ -235,7 +363,7 @@
         }
         
         .problem h2 span {
-            color: var(--vp-gold);
+            color: var(--vp-blue);
         }
         
         .problem-grid {
@@ -245,21 +373,17 @@
         }
         
         .problem-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--vp-white);
             border-radius: 12px;
             padding: 30px;
+            text-align: center;
             transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
         
         .problem-card:hover {
-            background: rgba(255,255,255,0.08);
             transform: translateY(-5px);
-        }
-        
-        .problem-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         
         .problem-card h3 {
@@ -270,7 +394,7 @@
         }
         
         .problem-card p {
-            color: rgba(255,255,255,0.7);
+            color: var(--vp-gray);
             font-size: 0.95rem;
         }
         
@@ -284,8 +408,9 @@
         .problem-stat {
             text-align: center;
             padding: 30px;
-            background: rgba(255,255,255,0.05);
+            background: var(--vp-white);
             border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
         
         .problem-stat-value {
@@ -297,7 +422,7 @@
         
         .problem-stat-text {
             font-size: 1rem;
-            color: rgba(255,255,255,0.7);
+            color: var(--vp-gray);
             margin-top: 8px;
         }
         
@@ -327,85 +452,34 @@
             color: var(--vp-gray);
         }
         
-        .solution-visual {
+        .channel-list {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 40px;
             flex-wrap: wrap;
-            margin-top: 60px;
+            gap: 24px;
+            margin-top: 40px;
         }
         
-        .chat-mockup {
-            background: var(--vp-light);
-            border-radius: 24px;
-            padding: 20px;
-            width: 320px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-        
-        .chat-header {
+        .channel-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            margin-bottom: 16px;
-        }
-        
-        .chat-avatar {
-            width: 40px;
-            height: 40px;
-            background: var(--vp-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-        
-        .chat-title {
-            font-weight: 700;
+            gap: 10px;
+            background: var(--vp-gray-light);
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 600;
             font-size: 0.95rem;
         }
         
-        .chat-status {
-            font-size: 0.8rem;
-            color: var(--vp-success);
-        }
-        
-        .chat-messages {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .chat-msg {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        
-        .chat-msg.bot {
-            background: var(--vp-white);
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
-        
-        .chat-msg.user {
-            background: var(--vp-blue);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
+        .channel-item svg {
+            width: 24px;
+            height: 24px;
         }
         
         /* ========== BENEFITS ========== */
         .benefits {
             padding: 100px 0;
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
         }
         
         .benefits h2 {
@@ -424,6 +498,7 @@
             background: var(--vp-white);
             border-radius: 12px;
             padding: 36px;
+            text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             transition: all 0.3s;
         }
@@ -431,18 +506,6 @@
         .benefit-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        
-        .benefit-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--vp-purple) 0%, var(--vp-blue) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
         }
         
         .benefit-card h3 {
@@ -485,7 +548,7 @@
         .use-case {
             text-align: center;
             padding: 30px;
-            border: 2px solid var(--vp-light);
+            border: 2px solid var(--vp-gray-light);
             border-radius: 16px;
             transition: all 0.3s;
         }
@@ -493,11 +556,6 @@
         .use-case:hover {
             border-color: var(--vp-blue);
             transform: translateY(-5px);
-        }
-        
-        .use-case-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
         }
         
         .use-case h3 {
@@ -515,7 +573,7 @@
         /* ========== HOW IT WORKS ========== */
         .how-it-works {
             padding: 100px 0;
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
         }
         
         .how-it-works h2 {
@@ -582,13 +640,13 @@
         }
         
         .testimonial {
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
             border-radius: 12px;
             padding: 36px;
         }
         
         .testimonial-stars {
-            color: var(--vp-gold);
+            color: #fbbf24;
             font-size: 1.2rem;
             margin-bottom: 16px;
         }
@@ -610,13 +668,17 @@
         .testimonial-avatar {
             width: 50px;
             height: 50px;
-            background: var(--vp-purple);
+            background: var(--vp-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 700;
+        }
+        
+        .testimonial-avatar.orange {
+            background: #ff6b00;
         }
         
         .testimonial-name {
@@ -631,7 +693,7 @@
         /* ========== PRICING ========== */
         .pricing {
             padding: 100px 0;
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
         }
         
         .pricing h2 {
@@ -657,7 +719,7 @@
         
         .pricing-card {
             background: var(--vp-white);
-            border: 2px solid var(--vp-light);
+            border: 2px solid var(--vp-gray-light);
             border-radius: 16px;
             padding: 40px;
             text-align: center;
@@ -680,7 +742,7 @@
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--vp-purple);
+            background: var(--vp-blue);
             color: white;
             padding: 6px 20px;
             border-radius: 50px;
@@ -728,7 +790,7 @@
         
         .pricing-features li {
             padding: 10px 0;
-            border-bottom: 1px solid var(--vp-light);
+            border-bottom: 1px solid var(--vp-gray-light);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -740,7 +802,9 @@
         }
         
         .pricing-features svg {
-            color: var(--vp-success);
+            width: 20px;
+            height: 20px;
+            stroke: var(--vp-success);
             flex-shrink: 0;
         }
         
@@ -749,7 +813,7 @@
         }
         
         .pricing-features .disabled svg {
-            color: var(--vp-gray);
+            stroke: var(--vp-gray);
         }
         
         .pricing-cta {
@@ -803,7 +867,7 @@
         }
         
         .faq-item {
-            background: var(--vp-light);
+            background: var(--vp-gray-light);
             border-radius: 12px;
             margin-bottom: 16px;
             overflow: hidden;
@@ -852,55 +916,45 @@
         /* ========== FINAL CTA ========== */
         .final-cta {
             padding: 100px 0;
-            background: linear-gradient(135deg, var(--vp-dark) 0%, #1a1a2e 100%);
-            color: white;
+            background: var(--vp-blue-light);
             text-align: center;
         }
         
         .final-cta h2 {
             font-size: clamp(1.8rem, 3.5vw, 2.8rem);
             margin-bottom: 20px;
+            color: var(--vp-dark);
         }
         
         .final-cta p {
             font-size: 1.15rem;
-            color: rgba(255,255,255,0.8);
+            color: var(--vp-gray);
             max-width: 600px;
             margin: 0 auto 40px;
-        }
-        
-        .final-cta .btn-primary {
-            background: var(--vp-gold);
-            color: var(--vp-dark);
-        }
-        
-        .final-cta .btn-primary:hover {
-            background: #e6a003;
-            box-shadow: 0 10px 30px rgba(255, 178, 4, 0.3);
         }
         
         .final-cta-trust {
             margin-top: 30px;
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.6);
+            color: var(--vp-gray);
         }
         
         /* ========== FOOTER ========== */
         footer {
             padding: 40px 0;
-            background: #0a0a0a;
-            color: rgba(255,255,255,0.6);
+            background: var(--vp-gray-light);
+            color: var(--vp-gray);
             text-align: center;
             font-size: 0.9rem;
         }
         
         footer a {
-            color: rgba(255,255,255,0.8);
+            color: var(--vp-dark);
             text-decoration: none;
         }
         
         footer a:hover {
-            color: white;
+            color: var(--vp-blue);
         }
         
         /* ========== RESPONSIVE ========== */
@@ -909,14 +963,18 @@
                 padding: 120px 0 60px;
             }
             
-            .hero-channels {
-                gap: 20px;
+            .channel-visual {
+                min-height: 500px;
             }
             
-            .channel-icon-circle {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+            .floating-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .floating-icon svg {
+                width: 22px;
+                height: 22px;
             }
             
             .pricing-grid {
@@ -925,7 +983,7 @@
             
             .chat-mockup {
                 width: 100%;
-                max-width: 320px;
+                max-width: 280px;
             }
         }
     </style>
@@ -935,7 +993,9 @@
     <header id="header">
         <div class="container">
             <div class="header-inner">
-                <a href="https://variaplus.de" class="logo">Varia <span>Plus</span></a>
+                <a href="https://variaplus.de" class="logo">
+                    <img src="https://variaplus.de/wp-content/uploads/2020/04/variaplus_logo_web_floating-nav.png" alt="Varia Plus">
+                </a>
                 <a href="#kontakt" class="header-cta">Kostenlos beraten lassen</a>
             </div>
         </div>
@@ -945,7 +1005,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-badge">
-                💬 Ein Bot. Alle Kanäle.
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Ein Bot. Alle Kanäle.
             </div>
             <h1>Ihr <span>digitaler Mitarbeiter</span> für Kundenanfragen.</h1>
             <p class="hero-sub">
@@ -955,37 +1016,61 @@
             <div class="hero-cta-group">
                 <a href="#kontakt" class="btn-primary">
                     Jetzt kostenlos beraten lassen
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
                 <p class="hero-guarantee">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                     Unverbindlich & kostenlos • 30-Tage-Geld-zurück-Garantie
                 </p>
             </div>
-            <div class="hero-channels">
-                <div class="channel-icon">
-                    <div class="channel-icon-circle">🌐</div>
-                    <div class="channel-icon-label">Website</div>
+            
+            <!-- Channel Visual with floating icons -->
+            <div class="channel-visual">
+                <!-- Floating Icons -->
+                <div class="floating-icon whatsapp">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 </div>
-                <div class="channel-icon">
-                    <div class="channel-icon-circle">💬</div>
-                    <div class="channel-icon-label">WhatsApp</div>
+                <div class="floating-icon instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </div>
-                <div class="channel-icon">
-                    <div class="channel-icon-circle">📸</div>
-                    <div class="channel-icon-label">Instagram</div>
+                <div class="floating-icon facebook">
+                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </div>
-                <div class="channel-icon">
-                    <div class="channel-icon-circle">👤</div>
-                    <div class="channel-icon-label">Facebook</div>
+                <div class="floating-icon messenger">
+                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/></svg>
                 </div>
-                <div class="channel-icon">
-                    <div class="channel-icon-circle">📱</div>
-                    <div class="channel-icon-label">SMS</div>
+                <div class="floating-icon web">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div class="floating-icon sms">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                
+                <!-- Chat Mockup -->
+                <div class="chat-mockup">
+                    <div class="chat-header">
+                        <div class="chat-avatar">
+                            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
+                        </div>
+                        <div>
+                            <div class="chat-title">Ihr Assistent</div>
+                            <div class="chat-status">● Online</div>
+                        </div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="chat-msg user">
+                            Haben Sie noch Termine diese Woche?
+                        </div>
+                        <div class="chat-msg bot">
+                            Ja! Wie wäre es mit Donnerstag 14 Uhr oder Freitag 10 Uhr?
+                        </div>
+                        <div class="chat-msg user">
+                            Donnerstag passt!
+                        </div>
+                        <div class="chat-msg bot">
+                            Super! Ich buche den Termin. Darf ich noch Ihren Namen haben?
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -997,17 +1082,23 @@
             <h2>Ihre Kunden erwarten <span>sofortige Antworten.</span></h2>
             <div class="problem-grid">
                 <div class="problem-card">
-                    <div class="problem-icon">⏰</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
                     <h3>Kunden warten nicht</h3>
                     <p>Eine Anfrage auf Instagram um 22 Uhr? Bis Sie morgen antworten, hat der Kunde woanders gekauft. Schnelligkeit gewinnt.</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">🔀</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                    </div>
                     <h3>Zu viele Kanäle</h3>
                     <p>Website-Chat, WhatsApp, Instagram DMs, Facebook Messenger – Sie können nicht überall gleichzeitig sein.</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">🔄</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </div>
                     <h3>Immer die gleichen Fragen</h3>
                     <p>"Was kostet das?" "Haben Sie noch Termine frei?" "Wo sind Sie?" – Ihr Team beantwortet täglich die gleichen Fragen.</p>
                 </div>
@@ -1040,29 +1131,30 @@
                     Leads qualifiziert. Automatisch.
                 </p>
             </div>
-            <div class="solution-visual">
-                <div class="chat-mockup">
-                    <div class="chat-header">
-                        <div class="chat-avatar">🤖</div>
-                        <div>
-                            <div class="chat-title">Ihr Assistent</div>
-                            <div class="chat-status">● Online</div>
-                        </div>
-                    </div>
-                    <div class="chat-messages">
-                        <div class="chat-msg user">
-                            Hallo, haben Sie noch Termine diese Woche frei?
-                        </div>
-                        <div class="chat-msg bot">
-                            Hallo! 👋 Ja, wir haben noch Termine frei. Wie wäre es mit Donnerstag um 14 Uhr oder Freitag um 10 Uhr?
-                        </div>
-                        <div class="chat-msg user">
-                            Donnerstag passt!
-                        </div>
-                        <div class="chat-msg bot">
-                            Super! Ich buche den Termin für Sie. Darf ich noch Ihren Namen und eine Telefonnummer haben? 📅
-                        </div>
-                    </div>
+            <div class="channel-list">
+                <div class="channel-item">
+                    <svg viewBox="0 0 24 24" fill="#0064fa"><circle cx="12" cy="12" r="10" fill="none" stroke="#0064fa" stroke-width="2"/><line x1="2" y1="12" x2="22" y2="12" stroke="#0064fa" stroke-width="2"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="#0064fa" stroke-width="2"/></svg>
+                    Website
+                </div>
+                <div class="channel-item">
+                    <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </div>
+                <div class="channel-item">
+                    <svg viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Instagram
+                </div>
+                <div class="channel-item">
+                    <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook
+                </div>
+                <div class="channel-item">
+                    <svg viewBox="0 0 24 24" fill="#0084FF"><path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0z"/></svg>
+                    Messenger
+                </div>
+                <div class="channel-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    SMS
                 </div>
             </div>
         </div>
@@ -1074,32 +1166,44 @@
             <h2>Was der Chatbot für Sie tut</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-icon">⚡</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
                     <h3>Sofortige Antworten</h3>
                     <p>Kunden bekommen innerhalb von Sekunden eine Antwort – egal zu welcher Uhrzeit.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">📅</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
                     <h3>Termine buchen</h3>
                     <p>Der Bot kennt Ihren Kalender und vereinbart Termine direkt – ohne Rückfragen.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🎯</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
                     <h3>Leads qualifizieren</h3>
                     <p>Wichtige Fragen werden vorab geklärt. Sie sprechen nur noch mit echten Interessenten.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">❓</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
                     <h3>FAQ automatisieren</h3>
                     <p>Die häufigsten Fragen werden sofort und korrekt beantwortet – 24/7.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🔗</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </div>
                     <h3>CRM-Integration</h3>
                     <p>Alle Gespräche und Kontakte werden automatisch in Ihrem System gespeichert.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">👤</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
                     <h3>Menschliche Übergabe</h3>
                     <p>Bei komplexen Fragen wird das Gespräch nahtlos an einen Mitarbeiter übergeben.</p>
                 </div>
@@ -1114,32 +1218,44 @@
             <p class="use-cases-sub">Der Chatbot passt sich an Ihr Geschäft an.</p>
             <div class="use-cases-grid">
                 <div class="use-case">
-                    <div class="use-case-icon">🏪</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
                     <h3>Einzelhandel</h3>
                     <p>Produktinfos, Verfügbarkeit, Öffnungszeiten</p>
                 </div>
                 <div class="use-case">
-                    <div class="use-case-icon">🔧</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
                     <h3>Handwerk</h3>
                     <p>Terminanfragen, Kostenvoranschläge, Notdienst</p>
                 </div>
                 <div class="use-case">
-                    <div class="use-case-icon">🏥</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
                     <h3>Gesundheit</h3>
                     <p>Terminbuchung, Öffnungszeiten, Sprechstunden</p>
                 </div>
                 <div class="use-case">
-                    <div class="use-case-icon">🏠</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
                     <h3>Immobilien</h3>
                     <p>Objektanfragen, Besichtigungstermine, Exposés</p>
                 </div>
                 <div class="use-case">
-                    <div class="use-case-icon">🍽️</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                    </div>
                     <h3>Gastronomie</h3>
                     <p>Reservierungen, Speisekarte, Events</p>
                 </div>
                 <div class="use-case">
-                    <div class="use-case-icon">💼</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
                     <h3>Dienstleister</h3>
                     <p>Anfragen, Beratungstermine, Angebote</p>
                 </div>
@@ -1183,7 +1299,7 @@
                         Der Bot antwortet sofort – auch nachts um 2, wenn wir noch hinterm Tresen stehen."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background: #ff6b00;">MK</div>
+                        <div class="testimonial-avatar orange">MK</div>
                         <div>
                             <div class="testimonial-name">Matthias Küffner</div>
                             <div class="testimonial-role">Inhaber, Smile Bar Kemnath</div>
@@ -1235,23 +1351,23 @@
                     <div class="pricing-setup">+ 199€ einmalige Einrichtung</div>
                     <ul class="pricing-features">
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             1 Kanal (Website)
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             500 Chats / Monat
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             FAQ-Bot
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             E-Mail Benachrichtigung
                         </li>
                         <li class="disabled">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             Terminbuchung
                         </li>
                     </ul>
@@ -1265,23 +1381,23 @@
                     <div class="pricing-setup">+ 299€ einmalige Einrichtung</div>
                     <ul class="pricing-features">
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             <strong>3 Kanäle</strong> (Web + WhatsApp + Instagram)
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             <strong>2.000 Chats</strong> / Monat
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             <strong>Terminbuchung</strong>
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             CRM-Integration
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Lead-Qualifizierung
                         </li>
                     </ul>
@@ -1294,23 +1410,23 @@
                     <div class="pricing-setup">+ 499€ einmalige Einrichtung</div>
                     <ul class="pricing-features">
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             <strong>Alle Kanäle</strong> (5+)
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             <strong>Unlimited Chats</strong>
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Alles aus Standard
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Multi-Language
                         </li>
                         <li>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
                             Priority Support
                         </li>
                     </ul>
@@ -1371,12 +1487,12 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>Sind meine Kundendaten sicher?</span>
+                        <span>Werden die Daten in Deutschland gespeichert?</span>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            Ja, alle Daten werden DSGVO-konform verarbeitet und auf deutschen Servern gespeichert. Datenschutz hat bei uns höchste Priorität.
+                            Ja, alle Daten werden DSGVO-konform auf deutschen Servern verarbeitet und gespeichert. Datenschutz hat bei uns höchste Priorität.
                         </div>
                     </div>
                 </div>
@@ -1394,9 +1510,7 @@
             </p>
             <a href="https://variaplus.de/termin" class="btn-primary">
                 Kostenloses Erstgespräch buchen
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <p class="final-cta-trust">
                 ✓ Unverbindlich & kostenlos • ✓ 30-Tage-Geld-zurück-Garantie • ✓ DSGVO-konform
