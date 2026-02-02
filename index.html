@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varia Plus KI-Lösungen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 800px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: #111;
+        }
+        h1 span { color: #0064fa; }
+        .subtitle {
+            color: #767676;
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .product {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+        }
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .product h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #111;
+        }
+        .product p {
+            color: #767676;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .product-cta {
+            display: inline-block;
+            margin-top: 24px;
+            color: #0064fa;
+            font-weight: 600;
+        }
+        footer {
+            margin-top: 60px;
+            color: #767676;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Varia <span>Plus</span> KI-Lösungen</h1>
+        <p class="subtitle">Wählen Sie das Produkt, das zu Ihrem Unternehmen passt.</p>
+        
+        <div class="products">
+            <a href="/voice/" class="product">
+                <div class="product-icon">📞</div>
+                <h2>KI-Anrufbeantworter</h2>
+                <p>Nie wieder einen Kundenanruf verpassen. Die KI nimmt ab, beantwortet Fragen und bucht Termine – 24/7.</p>
+                <span class="product-cta">Mehr erfahren →</span>
+            </a>
+            
+            <a href="/chatbot/" class="product">
+                <div class="product-icon">💬</div>
+                <h2>Omni-Channel Chatbot</h2>
+                <p>Ein Bot für Website, WhatsApp, Instagram & mehr. Automatisch Fragen beantworten und Leads qualifizieren.</p>
+                <span class="product-cta">Mehr erfahren →</span>
+            </a>
+        </div>
+        
+        <footer>
+            © 2026 Varia Plus GmbH • In Zusammenarbeit mit automatiks.io
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KI-Anrufbeantworter | Varia Plus</title>
+    <meta name="description" content="Nie wieder einen Kundenanruf verpassen. Der KI-Anrufbeantworter nimmt Anrufe entgegen, beantwortet Fragen und bucht Termine – 24/7, auch wenn Sie nicht können.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --vp-blue: #0064fa;
+            --vp-blue-dark: #0050c8;
+            --vp-dark: #111111;
+            --vp-gray: #767676;
+            --vp-light: #f8f9fa;
+            --vp-gold: #ffb204;
+            --vp-white: #ffffff;
+            --vp-success: #10b981;
+            --vp-danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--vp-dark);
+            line-height: 1.7;
+            background: var(--vp-white);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* ========== HEADER ========== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--vp-white);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+        
+        header.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--vp-dark);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--vp-blue);
+        }
+        
+        .header-cta {
+            background: var(--vp-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        
+        .header-cta:hover {
+            background: var(--vp-blue-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* ========== HERO ========== */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(180deg, var(--vp-light) 0%, var(--vp-white) 100%);
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--vp-blue);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero h1 span {
+            color: var(--vp-blue);
+        }
+        
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--vp-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--vp-blue);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background: var(--vp-blue-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 100, 250, 0.3);
+        }
+        
+        .hero-guarantee {
+            font-size: 0.9rem;
+            color: var(--vp-gray);
+        }
+        
+        .hero-guarantee svg {
+            color: var(--vp-success);
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--vp-blue);
+        }
+        
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: var(--vp-gray);
+            margin-top: 4px;
+        }
+        
+        /* ========== PROBLEM SECTION ========== */
+        .problem {
+            padding: 100px 0;
+            background: var(--vp-dark);
+            color: white;
+        }
+        
+        .problem h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 60px;
+        }
+        
+        .problem h2 span {
+            color: var(--vp-gold);
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .problem-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+        
+        .problem-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-5px);
+        }
+        
+        .problem-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .problem-card h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .problem-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+        
+        .problem-stat {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+        }
+        
+        .problem-stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--vp-danger);
+        }
+        
+        .problem-stat-text {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 8px;
+        }
+        
+        /* ========== SOLUTION ========== */
+        .solution {
+            padding: 100px 0;
+            background: var(--vp-white);
+        }
+        
+        .solution-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .solution-intro h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 20px;
+        }
+        
+        .solution-intro h2 span {
+            color: var(--vp-blue);
+        }
+        
+        .solution-intro p {
+            font-size: 1.15rem;
+            color: var(--vp-gray);
+        }
+        
+        .solution-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+        
+        .flow-step {
+            background: var(--vp-light);
+            border-radius: 12px;
+            padding: 24px 32px;
+            text-align: center;
+            min-width: 180px;
+        }
+        
+        .flow-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        
+        .flow-text {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--vp-blue);
+        }
+        
+        /* ========== BENEFITS ========== */
+        .benefits {
+            padding: 100px 0;
+            background: var(--vp-light);
+        }
+        
+        .benefits h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 60px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: var(--vp-white);
+            border-radius: 12px;
+            padding: 36px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--vp-blue) 0%, #3b82f6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .benefit-card p {
+            color: var(--vp-gray);
+            font-size: 0.95rem;
+        }
+        
+        /* ========== HOW IT WORKS ========== */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--vp-white);
+        }
+        
+        .how-it-works h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 60px;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--vp-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .step p {
+            color: var(--vp-gray);
+            font-size: 0.95rem;
+        }
+        
+        /* ========== SOCIAL PROOF ========== */
+        .social-proof {
+            padding: 100px 0;
+            background: var(--vp-light);
+        }
+        
+        .social-proof h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 60px;
+        }
+        
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background: var(--vp-white);
+            border-radius: 12px;
+            padding: 36px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-stars {
+            color: var(--vp-gold);
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+        
+        .testimonial-text {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--vp-dark);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--vp-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .testimonial-name {
+            font-weight: 700;
+        }
+        
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: var(--vp-gray);
+        }
+        
+        /* ========== PRICING ========== */
+        .pricing {
+            padding: 100px 0;
+            background: var(--vp-white);
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 16px;
+        }
+        
+        .pricing-sub {
+            text-align: center;
+            color: var(--vp-gray);
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: var(--vp-white);
+            border: 2px solid var(--vp-light);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--vp-blue);
+            transform: translateY(-5px);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--vp-blue);
+            box-shadow: 0 10px 40px rgba(0, 100, 250, 0.15);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--vp-blue);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .pricing-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-target {
+            font-size: 0.9rem;
+            color: var(--vp-gray);
+            margin-bottom: 24px;
+        }
+        
+        .pricing-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--vp-blue);
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--vp-gray);
+        }
+        
+        .pricing-setup {
+            font-size: 0.85rem;
+            color: var(--vp-gray);
+            margin-bottom: 24px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--vp-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features svg {
+            color: var(--vp-success);
+            flex-shrink: 0;
+        }
+        
+        .pricing-features .disabled {
+            color: var(--vp-gray);
+        }
+        
+        .pricing-features .disabled svg {
+            color: var(--vp-gray);
+        }
+        
+        .pricing-cta {
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .pricing-cta.primary {
+            background: var(--vp-blue);
+            color: white;
+            border: none;
+        }
+        
+        .pricing-cta.primary:hover {
+            background: var(--vp-blue-dark);
+        }
+        
+        .pricing-cta.secondary {
+            background: transparent;
+            color: var(--vp-blue);
+            border: 2px solid var(--vp-blue);
+        }
+        
+        .pricing-cta.secondary:hover {
+            background: var(--vp-blue);
+            color: white;
+        }
+        
+        /* ========== FAQ ========== */
+        .faq {
+            padding: 100px 0;
+            background: var(--vp-light);
+        }
+        
+        .faq h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 60px;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--vp-white);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        
+        .faq-question:hover {
+            background: var(--vp-light);
+        }
+        
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--vp-blue);
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer-inner {
+            padding: 0 24px 24px;
+            color: var(--vp-gray);
+            line-height: 1.8;
+        }
+        
+        /* ========== FINAL CTA ========== */
+        .final-cta {
+            padding: 100px 0;
+            background: var(--vp-dark);
+            color: white;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .final-cta .btn-primary {
+            background: var(--vp-gold);
+            color: var(--vp-dark);
+        }
+        
+        .final-cta .btn-primary:hover {
+            background: #e6a003;
+            box-shadow: 0 10px 30px rgba(255, 178, 4, 0.3);
+        }
+        
+        .final-cta-trust {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            padding: 40px 0;
+            background: #0a0a0a;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-stats {
+                gap: 30px;
+            }
+            
+            .flow-arrow {
+                display: none;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="https://variaplus.de" class="logo">Varia <span>Plus</span></a>
+                <a href="#kontakt" class="header-cta">Kostenlos beraten lassen</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                📞 KI-Technologie für den Mittelstand
+            </div>
+            <h1>Nie wieder einen <span>Kundenanruf</span> verpassen.</h1>
+            <p class="hero-sub">
+                Der KI-Anrufbeantworter nimmt jeden Anruf entgegen, beantwortet Fragen und bucht Termine – 
+                <strong>24 Stunden am Tag, 7 Tage die Woche.</strong> Auch wenn Sie und Ihr Team gerade nicht können.
+            </p>
+            <div class="hero-cta-group">
+                <a href="#kontakt" class="btn-primary">
+                    Jetzt kostenlos beraten lassen
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+                <p class="hero-guarantee">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Unverbindlich & kostenlos • 30-Tage-Geld-zurück-Garantie
+                </p>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">24/7</div>
+                    <div class="hero-stat-label">Erreichbarkeit</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">99€</div>
+                    <div class="hero-stat-label">Ab / Monat</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">0</div>
+                    <div class="hero-stat-label">Verpasste Anrufe</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem -->
+    <section class="problem">
+        <div class="container">
+            <h2>Kennen Sie das? Ihr Telefon klingelt – <span>aber niemand kann ran.</span></h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">😫</div>
+                    <h3>Sie sind im Kundengespräch</h3>
+                    <p>Mitten in der Beratung klingelt das Telefon. Rangehen? Dann unterbrechen Sie den Kunden vor Ihnen. Nicht rangehen? Dann verlieren Sie vielleicht den nächsten.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🏃</div>
+                    <h3>Ihr Team ist ausgelastet</h3>
+                    <p>Alle Mitarbeiter haben zu tun. Das Telefon klingelt – und keiner kann. Nach dem dritten Klingeln hat der Interessent aufgelegt.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🌙</div>
+                    <h3>Nach Feierabend? Keine Chance.</h3>
+                    <p>Kunden rufen an, wenn sie Zeit haben – nicht wenn Sie geöffnet haben. Abends, am Wochenende, in der Mittagspause. Und Sie verpassen jeden einzelnen Anruf.</p>
+                </div>
+            </div>
+            <div class="problem-stat">
+                <div class="problem-stat-value">85%</div>
+                <div class="problem-stat-text">der Anrufer rufen <strong>nicht zurück</strong>, wenn niemand abnimmt.</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Solution -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-intro">
+                <h2>Die Lösung: Ein <span>KI-Assistent</span>, der immer für Sie da ist.</h2>
+                <p>
+                    Stellen Sie sich vor: Jeder Anruf wird sofort angenommen. Höflich, professionell, 
+                    in Ihrem Namen. Fragen werden beantwortet, Termine gebucht, Nachrichten aufgenommen – 
+                    alles automatisch.
+                </p>
+            </div>
+            <div class="solution-flow">
+                <div class="flow-step">
+                    <div class="flow-icon">📞</div>
+                    <div class="flow-text">Kunde ruft an</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">🤖</div>
+                    <div class="flow-text">KI nimmt ab</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">🧠</div>
+                    <div class="flow-text">Versteht Anliegen</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">✅</div>
+                    <div class="flow-text">Erledigt & dokumentiert</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <h2>Was der KI-Anrufbeantworter für Sie tut</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📅</div>
+                    <h3>Termine direkt buchen</h3>
+                    <p>Der Assistent kennt Ihren Kalender und vereinbart Termine – ohne Rückruf, ohne E-Mail-Ping-Pong.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">❓</div>
+                    <h3>Fragen beantworten</h3>
+                    <p>Öffnungszeiten, Anfahrt, Verfügbarkeit – häufige Fragen werden sofort und korrekt beantwortet.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📝</div>
+                    <h3>Nachrichten aufnehmen</h3>
+                    <p>Jedes Anliegen wird erfasst und strukturiert an Sie weitergeleitet – per E-Mail oder ins CRM.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔀</div>
+                    <h3>Intelligent weiterleiten</h3>
+                    <p>Bei dringenden Fällen oder auf Wunsch wird der Anruf direkt an einen Mitarbeiter durchgestellt.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🇩🇪</div>
+                    <h3>Natürliche deutsche Sprache</h3>
+                    <p>Kein Roboter-Sound. Die KI spricht natürlich und versteht auch komplexere Anfragen.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3>DSGVO-konform</h3>
+                    <p>Alle Daten werden auf deutschen Servern verarbeitet. Datenschutz ist garantiert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How it Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>So einfach starten Sie</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Kostenloses Erstgespräch</h3>
+                    <p>Wir besprechen Ihre Anforderungen und zeigen Ihnen, wie der Assistent für Sie arbeiten kann.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Einrichtung in 24-48h</h3>
+                    <p>Wir konfigurieren den Assistenten für Ihr Unternehmen – mit Ihren Informationen, Ihrem Stil.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Los geht's</h3>
+                    <p>Ihr KI-Assistent ist aktiv. Ab jetzt wird kein Anruf mehr verpasst.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <h2>Das sagen unsere Kunden</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Als Bar sind wir abends voll ausgelastet – da können wir keine Reservierungsanrufe annehmen. 
+                        Seit der KI-Anrufbeantworter läuft, werden Tische automatisch gebucht, auch wenn wir gerade hunderte Cocktails mixen."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background: #ff6b00;">MK</div>
+                        <div>
+                            <div class="testimonial-name">Matthias Küffner</div>
+                            <div class="testimonial-role">Inhaber, Smile Bar Kemnath</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Endlich können wir uns auf unsere Arbeit konzentrieren, ohne ständig ans Telefon zu müssen. 
+                        Die KI übernimmt das professionell und freundlich."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SK</div>
+                        <div>
+                            <div class="testimonial-name">Sandra K.</div>
+                            <div class="testimonial-role">Inhaberin, Immobilienbüro</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Die Einrichtung war unkompliziert und der Support ist top. 
+                        Unsere Patienten sind begeistert, dass immer jemand abnimmt."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">TM</div>
+                        <div>
+                            <div class="testimonial-name">Dr. Thomas M.</div>
+                            <div class="testimonial-role">Zahnarztpraxis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section class="pricing" id="preise">
+        <div class="container">
+            <h2>Transparente Preise</h2>
+            <p class="pricing-sub">Keine versteckten Kosten. Monatlich kündbar.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Basic</div>
+                    <div class="pricing-target">Für kleine Betriebe</div>
+                    <div class="pricing-price">99€ <span>/ Monat</span></div>
+                    <div class="pricing-setup">+ 299€ einmalige Einrichtung</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            100 Inklusivminuten
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            KI-Anrufannahme 24/7
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Zusammenfassung via E-Mail
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Standard-Begrüßung
+                        </li>
+                        <li class="disabled">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                            Terminvereinbarung
+                        </li>
+                    </ul>
+                    <a href="#kontakt" class="pricing-cta secondary">Auswählen</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">BELIEBT</div>
+                    <div class="pricing-name">Standard</div>
+                    <div class="pricing-target">Wachsender Mittelstand</div>
+                    <div class="pricing-price">199€ <span>/ Monat</span></div>
+                    <div class="pricing-setup">+ 299€ einmalige Einrichtung</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <strong>500 Inklusivminuten</strong>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Alles aus Basic
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <strong>Terminvereinbarung</strong>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            CRM-Integration
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Individuelle Begrüßung
+                        </li>
+                    </ul>
+                    <a href="#kontakt" class="pricing-cta primary">Auswählen</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">Premium</div>
+                    <div class="pricing-target">Für größere Unternehmen</div>
+                    <div class="pricing-price">349€ <span>/ Monat</span></div>
+                    <div class="pricing-setup">+ 499€ einmalige Einrichtung</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <strong>1.000 Inklusivminuten</strong>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Alles aus Standard
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Mehrere Rufnummern
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Custom Voice
+                        </li>
+                        <li>
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Priority Support
+                        </li>
+                    </ul>
+                    <a href="#kontakt" class="pricing-cta secondary">Auswählen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Häufig gestellte Fragen</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Wie schnell kann ich starten?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Der KI-Anrufbeantworter ist innerhalb von 24-48 Stunden einsatzbereit. Nach unserem Erstgespräch konfigurieren wir den Assistenten für Ihr Unternehmen und Sie können sofort loslegen.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Klingt die KI wie ein Roboter?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Nein. Moderne KI-Stimmen klingen natürlich und sind kaum von echten Menschen zu unterscheiden. Die KI versteht auch komplexere Anfragen und antwortet passend.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Was passiert, wenn die KI eine Frage nicht beantworten kann?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            In diesem Fall nimmt die KI eine Nachricht auf und leitet sie an Sie weiter. Bei dringenden Fällen kann der Anruf auch direkt an einen Mitarbeiter durchgestellt werden.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Kann ich den Service monatlich kündigen?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ja, alle Pakete sind monatlich kündbar. Es gibt keine langfristigen Vertragsbindungen. Zusätzlich bieten wir eine 30-Tage-Geld-zurück-Garantie.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Sind meine Daten sicher?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ja. Alle Daten werden DSGVO-konform auf deutschen Servern verarbeitet und gespeichert. Datenschutz hat bei uns höchste Priorität.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="final-cta" id="kontakt">
+        <div class="container">
+            <h2>Bereit, keinen Anruf mehr zu verpassen?</h2>
+            <p>
+                Lassen Sie uns in einem kostenlosen Erstgespräch besprechen, 
+                wie der KI-Anrufbeantworter für Ihr Unternehmen arbeiten kann.
+            </p>
+            <a href="https://variaplus.de/termin" class="btn-primary">
+                Kostenloses Erstgespräch buchen
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+            </a>
+            <p class="final-cta-trust">
+                ✓ Unverbindlich & kostenlos • ✓ 30-Tage-Geld-zurück-Garantie • ✓ DSGVO-konform
+            </p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                © 2026 Varia Plus GmbH • 
+                <a href="https://variaplus.de/impressum">Impressum</a> • 
+                <a href="https://variaplus.de/datenschutz">Datenschutz</a>
+            </p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">
+                Ein Produkt von Varia Plus in Zusammenarbeit mit automatiks.io
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
