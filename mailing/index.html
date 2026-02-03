@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varia Plus - KI-Lösungen für Ihren Kundenservice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --varia-blue: #0064fa;
+            --varia-blue-dark: #0050c8;
+            --varia-blue-light: #e8f2ff;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a4a4a;
+            --text-light: #6a6a6a;
+            --white: #ffffff;
+            --gray-light: #f5f7fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', Arial, sans-serif;
+            color: var(--text-dark);
+            background: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            background: var(--white);
+            margin: 20px auto;
+            padding: 15mm 18mm;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== VORDERSEITE ===== */
+        .page-front {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12mm;
+            padding-bottom: 6mm;
+            border-bottom: 2px solid var(--varia-blue-light);
+        }
+
+        .logo img {
+            height: 38px;
+            width: auto;
+        }
+
+        .header-tagline {
+            font-size: 11px;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 12mm;
+            padding: 8mm 0;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6mm;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--varia-blue);
+        }
+
+        .hero .subline {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--varia-blue);
+            margin-bottom: 6mm;
+            letter-spacing: 0.3px;
+        }
+
+        .hero .intro {
+            font-size: 14px;
+            color: var(--text-medium);
+            max-width: 85%;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .products {
+            display: flex;
+            gap: 5mm;
+            margin-top: auto;
+            padding-top: 8mm;
+        }
+
+        .product-card {
+            flex: 1;
+            background: var(--gray-light);
+            border-radius: 8px;
+            padding: 7mm 5mm;
+            text-align: center;
+            border: 1px solid #e8e8e8;
+            transition: all 0.2s;
+        }
+
+        .product-card:nth-child(3) {
+            background: linear-gradient(135deg, var(--varia-blue) 0%, var(--varia-blue-dark) 100%);
+            color: var(--white);
+            border: none;
+        }
+
+        .product-card:nth-child(3) .product-desc {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .product-icon {
+            font-size: 32px;
+            margin-bottom: 4mm;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 3mm;
+        }
+
+        .product-desc {
+            font-size: 12px;
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2mm 3mm;
+            border-radius: 4px;
+            margin-top: 3mm;
+            letter-spacing: 0.3px;
+        }
+
+        .page-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5mm;
+            background: linear-gradient(90deg, var(--varia-blue) 0%, var(--varia-blue-dark) 100%);
+        }
+
+        /* ===== RÜCKSEITE ===== */
+        .page-back {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back-header {
+            text-align: center;
+            margin-bottom: 10mm;
+            padding-bottom: 5mm;
+            border-bottom: 2px solid var(--varia-blue-light);
+        }
+
+        .back-header h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .back-header h2 span {
+            color: var(--varia-blue);
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5mm;
+            margin-bottom: 10mm;
+        }
+
+        .benefit {
+            background: var(--gray-light);
+            border-radius: 6px;
+            padding: 5mm;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 28px;
+            margin-bottom: 3mm;
+        }
+
+        .benefit-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2mm;
+        }
+
+        .benefit-desc {
+            font-size: 11px;
+            color: var(--text-medium);
+            line-height: 1.4;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, var(--varia-blue-light) 0%, #f0f7ff 100%);
+            border-radius: 8px;
+            padding: 6mm;
+            margin-bottom: 8mm;
+        }
+
+        .pricing-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 5mm;
+            color: var(--text-dark);
+        }
+
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 8mm;
+        }
+
+        .price-item {
+            text-align: center;
+            padding: 4mm 6mm;
+            background: var(--white);
+            border-radius: 6px;
+            min-width: 45mm;
+        }
+
+        .price-item.highlight {
+            background: var(--varia-blue);
+            color: var(--white);
+        }
+
+        .price-label {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 1mm;
+        }
+
+        .price-value {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .price-item.highlight .price-value {
+            color: var(--white);
+        }
+
+        .price-suffix {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .price-item.highlight .price-suffix {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .cta-section {
+            background: var(--varia-blue);
+            border-radius: 8px;
+            padding: 8mm;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8mm;
+        }
+
+        .cta-content {
+            color: var(--white);
+            flex: 1;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 2mm;
+        }
+
+        .cta-subtitle {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 3mm;
+        }
+
+        .cta-url {
+            display: inline-block;
+            background: var(--white);
+            color: var(--varia-blue);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 3mm 5mm;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .qr-code {
+            width: 28mm;
+            height: 28mm;
+            background: var(--white);
+            border-radius: 4px;
+            padding: 2mm;
+            margin-left: 6mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 5mm;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .footer-logo img {
+            height: 28px;
+        }
+
+        .footer-partner {
+            font-size: 10px;
+            color: var(--text-light);
+        }
+
+        .footer-contact {
+            font-size: 11px;
+            color: var(--text-medium);
+            text-align: right;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .page {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 15mm 18mm;
+                box-shadow: none;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+
+            .page:last-child {
+                page-break-after: auto;
+            }
+
+            .product-card:nth-child(3),
+            .cta-section,
+            .price-item.highlight,
+            .page-decoration {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- VORDERSEITE -->
+    <div class="page page-front">
+        <header class="header">
+            <div class="logo">
+                <img src="https://variaplus.de/wp-content/uploads/2020/04/variaplus_logo_web_floating-nav.png" alt="Varia Plus Logo">
+            </div>
+            <div class="header-tagline">Ihr Partner für digitale Lösungen</div>
+        </header>
+
+        <section class="hero">
+            <h1>Nie wieder einen <span>Kunden</span> verpassen.</h1>
+            <p class="subline">Varia Plus präsentiert KI-Lösungen für Ihren Kundenservice</p>
+            <p class="intro">
+                Als Ihr Partner möchten wir Ihnen zeigen, wie Sie mit moderner KI-Technologie 
+                Zeit sparen und keinen Anruf sowie keine Anfrage mehr verpassen. Unsere intelligenten 
+                Assistenten arbeiten rund um die Uhr – damit Sie sich auf Ihr Kerngeschäft konzentrieren können.
+            </p>
+        </section>
+
+        <section class="products">
+            <div class="product-card">
+                <div class="product-icon">📞</div>
+                <h3 class="product-title">KI-Anrufbeantworter</h3>
+                <p class="product-desc">Nimmt ab, wenn Sie nicht können. 24/7 erreichbar für Ihre Kunden.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">💬</div>
+                <h3 class="product-title">Omni-Channel Chatbot</h3>
+                <p class="product-desc">Ein Bot für Website, WhatsApp & mehr. Überall präsent.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🚀</div>
+                <h3 class="product-title">Kombi-Paket</h3>
+                <p class="product-desc">Telefon + Chat. Alles abgedeckt.</p>
+                <span class="badge">15% SPAREN</span>
+            </div>
+        </section>
+
+        <div class="page-decoration"></div>
+    </div>
+
+    <!-- RÜCKSEITE -->
+    <div class="page page-back">
+        <header class="back-header">
+            <h2>Das können unsere <span>KI-Assistenten</span> für Sie tun:</h2>
+        </header>
+
+        <section class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">🌙</div>
+                <h4 class="benefit-title">24/7 Erreichbar</h4>
+                <p class="benefit-desc">Auch nachts und am Wochenende immer für Ihre Kunden da.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">📅</div>
+                <h4 class="benefit-title">Termine buchen</h4>
+                <p class="benefit-desc">Automatische Terminvereinbarung direkt in Ihren Kalender.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">❓</div>
+                <h4 class="benefit-title">Fragen beantworten</h4>
+                <p class="benefit-desc">Häufige Fragen werden sofort und kompetent beantwortet.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🎯</div>
+                <h4 class="benefit-title">Leads qualifizieren</h4>
+                <p class="benefit-desc">Interessenten werden vorqualifiziert und an Sie weitergeleitet.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🔒</div>
+                <h4 class="benefit-title">Deutsche Server / DSGVO</h4>
+                <p class="benefit-desc">Hosting in Deutschland, 100% DSGVO-konform.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">⚡</div>
+                <h4 class="benefit-title">In 24h startklar</h4>
+                <p class="benefit-desc">Schnelle Einrichtung – morgen schon produktiv.</p>
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <h3 class="pricing-title">Unsere Pakete im Überblick</h3>
+            <div class="pricing-grid">
+                <div class="price-item">
+                    <div class="price-label">📞 Voice</div>
+                    <div class="price-value">ab 99€</div>
+                    <div class="price-suffix">pro Monat</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-label">💬 Chat</div>
+                    <div class="price-value">ab 79€</div>
+                    <div class="price-suffix">pro Monat</div>
+                </div>
+                <div class="price-item highlight">
+                    <div class="price-label">🚀 Kombi</div>
+                    <div class="price-value">ab 149€</div>
+                    <div class="price-suffix">pro Monat</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h3 class="cta-title">Kostenlose Beratung vereinbaren</h3>
+                <p class="cta-subtitle">Wir zeigen Ihnen, wie KI Ihren Kundenservice revolutioniert.</p>
+                <span class="cta-url">variaplus.de/ki</span>
+            </div>
+            <div class="qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://variaplus.de/ki&color=0064fa" alt="QR-Code zu variaplus.de/ki">
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-logo">
+                <img src="https://variaplus.de/wp-content/uploads/2020/04/variaplus_logo_web_floating-nav.png" alt="Varia Plus">
+            </div>
+            <div class="footer-partner">In Zusammenarbeit mit automatiks.io</div>
+            <div class="footer-contact">
+                Fragen? Kontaktieren Sie uns!<br>
+                <strong>variaplus.de/ki</strong>
+            </div>
+        </footer>
+
+        <div class="page-decoration"></div>
+    </div>
+</body>
+</html>
