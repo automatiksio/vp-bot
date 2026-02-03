@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KI-Komplettpaket: Voice + Chatbot | Varia Plus</title>
+    <meta name="description" content="Das Rundum-sorglos-Paket: KI-Anrufbeantworter + Omni-Channel Chatbot in einem. Telefon, Website, WhatsApp, Instagram – alle Kanäle abgedeckt, ein Preis.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --vp-blue: #0064fa;
+            --vp-blue-dark: #0050c8;
+            --vp-blue-light: #e8f1ff;
+            --vp-dark: #111111;
+            --vp-gray: #767676;
+            --vp-gray-light: #f5f7fa;
+            --vp-white: #ffffff;
+            --vp-success: #10b981;
+            --vp-purple: #8b5cf6;
+            --vp-purple-light: #f3e8ff;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--vp-dark);
+            line-height: 1.7;
+            background: var(--vp-white);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        .icon-box {
+            width: 64px; height: 64px;
+            background: var(--vp-blue-light);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .icon-box svg { width: 32px; height: 32px; stroke: var(--vp-blue); stroke-width: 1.5; fill: none; }
+        .icon-box.purple { background: var(--vp-purple-light); }
+        .icon-box.purple svg { stroke: var(--vp-purple); }
+        
+        /* Header */
+        header {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--vp-white); z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+        header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+        .logo img { height: 40px; width: auto; }
+        .header-cta {
+            background: var(--vp-blue); color: white;
+            padding: 12px 24px; border-radius: 6px;
+            text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .header-cta:hover { background: var(--vp-blue-dark); transform: translateY(-2px); }
+        
+        /* Hero */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, var(--vp-blue-light) 0%, var(--vp-purple-light) 100%);
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, var(--vp-blue), var(--vp-purple));
+            color: white; padding: 8px 20px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 24px; max-width: 900px;
+            margin-left: auto; margin-right: auto;
+        }
+        .hero h1 span { 
+            background: linear-gradient(135deg, var(--vp-blue), var(--vp-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-sub {
+            font-size: 1.25rem; color: var(--vp-gray);
+            max-width: 750px; margin: 0 auto 40px;
+        }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--vp-blue), var(--vp-purple));
+            color: white; padding: 18px 36px; border-radius: 6px;
+            text-decoration: none; font-weight: 700; font-size: 1.1rem;
+            transition: all 0.3s; border: none; cursor: pointer;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3); }
+        .hero-guarantee { font-size: 0.9rem; color: var(--vp-gray); margin-top: 16px; }
+        .hero-guarantee svg { width: 16px; height: 16px; stroke: var(--vp-success); vertical-align: middle; margin-right: 4px; }
+        
+        /* Stats */
+        .hero-stats { display: flex; justify-content: center; gap: 60px; margin-top: 60px; flex-wrap: wrap; }
+        .hero-stat { text-align: center; }
+        .hero-stat-value { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--vp-blue); }
+        .hero-stat-label { font-size: 0.9rem; color: var(--vp-gray); margin-top: 4px; }
+        
+        /* Channels */
+        .channels {
+            padding: 80px 0;
+            background: var(--vp-white);
+            text-align: center;
+        }
+        .channels h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 40px; }
+        .channel-grid {
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 24px;
+        }
+        .channel-item {
+            background: var(--vp-gray-light);
+            padding: 20px 32px; border-radius: 12px;
+            display: flex; align-items: center; gap: 12px;
+            font-weight: 600; font-size: 1rem;
+        }
+        .channel-item svg { width: 28px; height: 28px; }
+        .channel-item.phone svg { stroke: var(--vp-blue); fill: none; stroke-width: 2; }
+        .channel-item.web svg { stroke: var(--vp-blue); fill: none; stroke-width: 2; }
+        .channel-item.whatsapp svg { fill: #25D366; }
+        .channel-item.instagram svg { fill: #E4405F; }
+        .channel-item.facebook svg { fill: #1877F2; }
+        .channel-item.telegram svg { fill: #0088cc; }
+        
+        /* Why Kombi */
+        .why-kombi {
+            padding: 100px 0;
+            background: var(--vp-gray-light);
+        }
+        .why-kombi h2 { text-align: center; font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 60px; }
+        .why-kombi h2 span { color: var(--vp-purple); }
+        .kombi-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .kombi-card {
+            background: var(--vp-white); border-radius: 16px; padding: 36px;
+            text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .kombi-card:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .kombi-card h3 { font-family: 'Lato', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+        .kombi-card p { color: var(--vp-gray); font-size: 0.95rem; }
+        
+        /* Comparison */
+        .comparison {
+            padding: 100px 0;
+            background: var(--vp-white);
+        }
+        .comparison h2 { text-align: center; font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 60px; }
+        .comparison-table {
+            max-width: 900px; margin: 0 auto;
+            background: var(--vp-white);
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+        .comparison-header {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            background: linear-gradient(135deg, var(--vp-blue), var(--vp-purple));
+            color: white; font-weight: 700; font-size: 0.9rem;
+        }
+        .comparison-header > div { padding: 20px 16px; text-align: center; }
+        .comparison-header > div:first-child { text-align: left; }
+        .comparison-row {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--vp-gray-light);
+        }
+        .comparison-row:last-child { border-bottom: none; }
+        .comparison-row > div { padding: 16px; text-align: center; display: flex; align-items: center; justify-content: center; }
+        .comparison-row > div:first-child { text-align: left; justify-content: flex-start; font-weight: 500; }
+        .comparison-row svg { width: 20px; height: 20px; }
+        .comparison-row svg.check { stroke: var(--vp-success); }
+        .comparison-row svg.x { stroke: var(--vp-gray); }
+        .comparison-row.highlight { background: var(--vp-purple-light); }
+        
+        /* Pricing */
+        .pricing { padding: 100px 0; background: var(--vp-gray-light); }
+        .pricing h2 { text-align: center; font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 16px; }
+        .pricing-sub { text-align: center; color: var(--vp-gray); margin-bottom: 20px; font-size: 1.1rem; }
+        .pricing-savings {
+            text-align: center; margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--vp-blue), var(--vp-purple));
+            color: white; padding: 12px 24px; border-radius: 50px;
+            display: inline-block; font-weight: 600;
+        }
+        .pricing-wrapper { text-align: center; }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; max-width: 1000px; margin: 0 auto;
+        }
+        .pricing-card {
+            background: var(--vp-white);
+            border: 2px solid var(--vp-gray-light);
+            border-radius: 16px; padding: 40px;
+            text-align: center; position: relative;
+            transition: all 0.3s;
+        }
+        .pricing-card:hover { border-color: var(--vp-purple); transform: translateY(-5px); }
+        .pricing-card.featured {
+            border-color: var(--vp-purple);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2);
+        }
+        .pricing-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--vp-blue), var(--vp-purple));
+            color: white; padding: 6px 20px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700;
+        }
+        .pricing-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; }
+        .pricing-target { font-size: 0.9rem; color: var(--vp-gray); margin-bottom: 24px; }
+        .pricing-price { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--vp-purple); }
+        .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--vp-gray); }
+        .pricing-original {
+            font-size: 0.9rem; color: var(--vp-gray);
+            text-decoration: line-through; margin-bottom: 8px;
+        }
+        .pricing-setup { font-size: 0.85rem; color: var(--vp-gray); margin-bottom: 24px; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 30px; }
+        .pricing-features li {
+            padding: 10px 0; border-bottom: 1px solid var(--vp-gray-light);
+            display: flex; align-items: center; gap: 10px; font-size: 0.95rem;
+        }
+        .pricing-features li:last-child { border-bottom: none; }
+        .pricing-features svg { width: 20px; height: 20px; stroke: var(--vp-success); flex-shrink: 0; }
+        .pricing-cta {
+            width: 100%; padding: 16px; border-radius: 8px;
+            font-weight: 700; font-size: 1rem; cursor: pointer;
+            transition: all 0.3s; text-decoration: none; display: block;
+        }
+        .pricing-cta.primary {
+            background: linear-gradient(135deg, var(--vp-blue), var(--vp-purple));
+            color: white; border: none;
+        }
+        .pricing-cta.primary:hover { transform: scale(1.02); }
+        .pricing-cta.secondary {
+            background: transparent; color: var(--vp-purple);
+            border: 2px solid var(--vp-purple);
+        }
+        .pricing-cta.secondary:hover { background: var(--vp-purple); color: white; }
+        
+        /* Single Products Hint */
+        .single-hint {
+            padding: 60px 0;
+            background: var(--vp-white);
+            text-align: center;
+        }
+        .single-hint p { color: var(--vp-gray); margin-bottom: 20px; }
+        .single-hint-links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .single-hint-links a {
+            color: var(--vp-blue); text-decoration: none; font-weight: 600;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .single-hint-links a:hover { text-decoration: underline; }
+        
+        /* FAQ */
+        .faq { padding: 100px 0; background: var(--vp-gray-light); }
+        .faq h2 { text-align: center; font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 60px; }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--vp-white); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+        .faq-question {
+            padding: 24px; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; font-size: 1.05rem;
+        }
+        .faq-question:hover { background: var(--vp-gray-light); }
+        .faq-icon { font-size: 1.5rem; color: var(--vp-purple); transition: transform 0.3s; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-item.open .faq-answer { max-height: 500px; }
+        .faq-answer-inner { padding: 0 24px 24px; color: var(--vp-gray); line-height: 1.8; }
+        
+        /* Final CTA */
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--vp-blue-light), var(--vp-purple-light));
+            text-align: center;
+        }
+        .final-cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 20px; }
+        .final-cta p { font-size: 1.15rem; color: var(--vp-gray); max-width: 600px; margin: 0 auto 40px; }
+        .final-cta-trust { margin-top: 30px; font-size: 0.9rem; color: var(--vp-gray); }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0; background: var(--vp-gray-light);
+            color: var(--vp-gray); text-align: center; font-size: 0.9rem;
+        }
+        footer a { color: var(--vp-dark); text-decoration: none; }
+        footer a:hover { color: var(--vp-purple); }
+        
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 60px; }
+            .hero-stats { gap: 30px; }
+            .comparison-table { font-size: 0.85rem; }
+            .comparison-header, .comparison-row { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="https://variaplus.de" class="logo">
+                    <img src="https://variaplus.de/wp-content/uploads/2020/04/variaplus_logo_web_floating-nav.png" alt="Varia Plus">
+                </a>
+                <a href="#kontakt" class="header-cta">Kostenlos beraten lassen</a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                🚀 Komplettpaket mit bis zu 79€ Ersparnis
+            </div>
+            <h1>Telefon + Chat = <span>Rundum erreichbar.</span></h1>
+            <p class="hero-sub">
+                Das KI-Komplettpaket: <strong>Anrufbeantworter + Chatbot</strong> in einem. 
+                Telefon, Website, WhatsApp, Instagram – Ihre Kunden erreichen Sie, wie sie wollen. Sie verpassen nichts mehr.
+            </p>
+            <a href="#kontakt" class="btn-primary">
+                Komplettpaket anfragen
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <p class="hero-guarantee">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                Günstiger als Einzelprodukte • 30-Tage-Geld-zurück-Garantie
+            </p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">6+</div>
+                    <div class="hero-stat-label">Kanäle abgedeckt</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">24/7</div>
+                    <div class="hero-stat-label">Erreichbarkeit</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">15%</div>
+                    <div class="hero-stat-label">Kombi-Rabatt</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="channels">
+        <div class="container">
+            <h2>Alle Kanäle. Ein System. Ein Preis.</h2>
+            <div class="channel-grid">
+                <div class="channel-item phone">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Telefon
+                </div>
+                <div class="channel-item web">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    Website
+                </div>
+                <div class="channel-item whatsapp">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </div>
+                <div class="channel-item instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    Instagram
+                </div>
+                <div class="channel-item facebook">
+                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook
+                </div>
+                <div class="channel-item telegram">
+                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Telegram
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="why-kombi">
+        <div class="container">
+            <h2>Warum das <span>Komplettpaket</span>?</h2>
+            <div class="kombi-grid">
+                <div class="kombi-card">
+                    <div class="icon-box purple">
+                        <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <h3>Kunden wählen den Kanal</h3>
+                    <p>Manche rufen lieber an, andere schreiben auf WhatsApp. Mit dem Komplettpaket sind Sie auf allen Kanälen präsent.</p>
+                </div>
+                <div class="kombi-card">
+                    <div class="icon-box purple">
+                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <h3>Ein System, keine Silos</h3>
+                    <p>Alle Anfragen landen im gleichen CRM. Egal ob Anruf oder Chat – Sie haben den kompletten Überblick.</p>
+                </div>
+                <div class="kombi-card">
+                    <div class="icon-box purple">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Günstiger als einzeln</h3>
+                    <p>Sparen Sie bis zu 79€ pro Monat im Vergleich zu den Einzelprodukten. Mehr Kanäle, weniger Kosten.</p>
+                </div>
+                <div class="kombi-card">
+                    <div class="icon-box purple">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Einheitliches Auftreten</h3>
+                    <p>Gleiche Tonalität, gleiche Informationen auf allen Kanälen. Ihre Kunden erleben konsistenten Service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="comparison">
+        <div class="container">
+            <h2>Einzeln vs. Kombi</h2>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>Feature</div>
+                    <div>Voice</div>
+                    <div>Chatbot</div>
+                    <div>Kombi</div>
+                </div>
+                <div class="comparison-row">
+                    <div>Telefonannahme 24/7</div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <div><svg class="x" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                </div>
+                <div class="comparison-row">
+                    <div>Website-Chat</div>
+                    <div><svg class="x" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                </div>
+                <div class="comparison-row">
+                    <div>WhatsApp & Instagram</div>
+                    <div><svg class="x" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                </div>
+                <div class="comparison-row">
+                    <div>Terminbuchung</div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                </div>
+                <div class="comparison-row">
+                    <div>CRM-Integration</div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <div><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                </div>
+                <div class="comparison-row highlight">
+                    <div><strong>Standard-Preis</strong></div>
+                    <div>199€</div>
+                    <div>149€</div>
+                    <div><strong>299€</strong></div>
+                </div>
+                <div class="comparison-row highlight">
+                    <div><strong>Ersparnis</strong></div>
+                    <div>–</div>
+                    <div>–</div>
+                    <div><strong>49€/Mo</strong></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing" id="preise">
+        <div class="container">
+            <h2>Komplettpaket-Preise</h2>
+            <p class="pricing-sub">Voice + Chatbot kombiniert. Monatlich kündbar.</p>
+            <div class="pricing-wrapper">
+                <span class="pricing-savings">🎁 Bis zu 79€ monatlich sparen vs. Einzelkauf</span>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Kombi Basic</div>
+                    <div class="pricing-target">Für kleine Betriebe</div>
+                    <div class="pricing-original">Einzeln: 178€/Mo</div>
+                    <div class="pricing-price">149€ <span>/ Monat</span></div>
+                    <div class="pricing-setup">+ 399€ einmalige Einrichtung</div>
+                    <ul class="pricing-features">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100 Telefon-Minuten</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 500 Chat-Nachrichten</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 1 Chat-Kanal (Website)</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> E-Mail Benachrichtigung</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Standard-Begrüßung</li>
+                    </ul>
+                    <a href="#kontakt" class="pricing-cta secondary">Auswählen</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">BESTE WAHL</div>
+                    <div class="pricing-name">Kombi Standard</div>
+                    <div class="pricing-target">Wachsender Mittelstand</div>
+                    <div class="pricing-original">Einzeln: 348€/Mo</div>
+                    <div class="pricing-price">299€ <span>/ Monat</span></div>
+                    <div class="pricing-setup">+ 499€ einmalige Einrichtung</div>
+                    <ul class="pricing-features">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <strong>500 Telefon-Minuten</strong></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <strong>2.000 Chat-Nachrichten</strong></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <strong>3 Kanäle</strong> (Web + WA + IG)</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <strong>Terminbuchung</strong></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> CRM-Integration</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Individuelle Begrüßung</li>
+                    </ul>
+                    <a href="#kontakt" class="pricing-cta primary">Auswählen</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">Kombi Premium</div>
+                    <div class="pricing-target">Für größere Unternehmen</div>
+                    <div class="pricing-original">Einzeln: 628€/Mo</div>
+                    <div class="pricing-price">549€ <span>/ Monat</span></div>
+                    <div class="pricing-setup">+ 799€ einmalige Einrichtung</div>
+                    <ul class="pricing-features">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <strong>1.000 Telefon-Minuten</strong></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <strong>Unlimited Chats</strong></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <strong>Alle Kanäle</strong> (5+)</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Custom Voice</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Multi-Language</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Priority Support</li>
+                    </ul>
+                    <a href="#kontakt" class="pricing-cta secondary">Auswählen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="single-hint">
+        <div class="container">
+            <p>Sie brauchen nur einen Kanal? Kein Problem – wir bieten auch Einzellösungen an:</p>
+            <div class="single-hint-links">
+                <a href="../voice/">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/></svg>
+                    Nur KI-Anrufbeantworter →
+                </a>
+                <a href="../chatbot/">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Nur Chatbot →
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="faq">
+        <div class="container">
+            <h2>Häufig gestellte Fragen</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Kann ich später von Einzel auf Kombi wechseln?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ja, absolut. Sie können jederzeit upgraden. Die bereits gezahlte Einrichtungsgebühr wird anteilig angerechnet.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Werden Telefon und Chat getrennt eingerichtet?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Nein, wir richten alles in einem Projekt ein. Gleiche Wissensbasis, gleiche Antworten, gleiche Tonalität – egal ob Anruf oder Chat. Sie haben nur einen Ansprechpartner.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Was passiert wenn meine Minuten/Chats aufgebraucht sind?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Der Service läuft weiter. Zusätzliche Minuten werden zu fairen Konditionen abgerechnet (Voice: 0,25€/Min, Chat: 0,05€/Nachricht). Wir informieren Sie rechtzeitig, wenn Sie sich dem Limit nähern.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Kann ich einzelne Kanäle deaktivieren?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ja. Sie entscheiden, welche Kanäle aktiv sein sollen. WhatsApp zu viel? Einfach deaktivieren. Später wieder aktivieren? Kein Problem.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="final-cta" id="kontakt">
+        <div class="container">
+            <h2>Bereit für volle Erreichbarkeit?</h2>
+            <p>
+                Lassen Sie uns besprechen, wie das Komplettpaket für Ihr Unternehmen aussehen kann – kostenlos und unverbindlich.
+            </p>
+            <a href="https://variaplus.de/termin" class="btn-primary">
+                Kostenloses Erstgespräch buchen
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <p class="final-cta-trust">
+                ✓ Unverbindlich • ✓ 30-Tage-Geld-zurück • ✓ DSGVO-konform
+            </p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 Varia Plus GmbH • <a href="https://variaplus.de/impressum">Impressum</a> • <a href="https://variaplus.de/datenschutz">Datenschutz</a></p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">Ein Produkt von Varia Plus in Zusammenarbeit mit automatiks.io</p>
+        </div>
+    </footer>
+    
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
